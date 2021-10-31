@@ -30,7 +30,7 @@ const OrdersPlace = () => {
         const result = { name: name, title: servicePack, number: number, email: email, address: address, price: price }
 
         console.log(result)
-        fetch('http://localhost:4000/orders', {
+        fetch('https://obscure-caverns-66602.herokuapp.com/orders', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
