@@ -13,11 +13,11 @@ const FooterTop = () => {
                         The capital and largest city of the United Kingdom
                     </p>
                     <div className="flex gap-2">
-                        <p><a href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-facebook"></i></a></p>
-                        <p><a href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-twitter"></i></a></p>
-                        <p><a href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-instagram"></i></a></p>
-                        <p><a href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-linkedin-in"></i></a></p>
-                        <p><a href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-yelp"></i></a></p>
+                        <p><a className="no-underline" href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-facebook"></i></a></p>
+                        <p><a className="no-underline" href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-twitter"></i></a></p>
+                        <p><a className="no-underline" href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-instagram"></i></a></p>
+                        <p><a className="no-underline" href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-linkedin-in"></i></a></p>
+                        <p><a className="no-underline" href="/"><i className="w-10 h-10 rounded-full flex justify-center items-center bg-red-500 text-white  fab fa-yelp"></i></a></p>
                     </div>
                 </div>
                 <div>

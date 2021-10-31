@@ -31,9 +31,10 @@ const NewService = () => {
         })
     };
     return (
-        <div className="grid grid-cols-1  my-20">
+        <div className="grid grid-cols-1  my-20 container mx-auto">
             <div>
-                <Form >
+            <h1 className="text-center text-4xl mb-8">Add A New Service</h1>
+                <Form className="w-80 mx-auto" >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control ref={titleRef} type="text" placeholder="Enter Title" required />
                     </Form.Group>
@@ -44,19 +45,16 @@ const NewService = () => {
                         <Form.Control ref={priceRef} type="number" placeholder="Enter Price" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control ref={priceRef} type="text" placeholder="Enter Description" required />
+                        <Form.Control ref={desRef} type="text" placeholder="Enter Description" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control ref={priceRef} type="text" placeholder="Enter Ragtin" required />
+                        <Form.Control ref={tourRef} type="text" placeholder="Enter Tour Days" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control ref={priceRef} type="number" placeholder="Enter Price" required />
+                        <Form.Control ref={ratingRef} type="number" placeholder="Enter Rating" required />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control ref={priceRef} type="text" placeholder="Enter Img" required />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control ref={priceRef} type="text" placeholder="Enter Tour" required />
+                        <Form.Control ref={imgRef} type="text" placeholder="Enter Image" required />
                     </Form.Group>
 
                     <Button onClick={handleSubmit} className="w-80 mt-4" variant="primary" type="submit">

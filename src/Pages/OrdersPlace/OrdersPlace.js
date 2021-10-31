@@ -1,34 +1,30 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { Card, Col } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import useServices from '../../hooks/UseServices/useServices';
+import useAuth from '../../hooks/useAuth/useAuth'
 
 const OrdersPlace = () => {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [address, setAddress] = useState('')
-    const [servicePack, setServicePack] = useState('')
-    const [number, setNumber] = useState('')
+    const nameRef = useRef('')
+    const servicePackRef = useRef('')
+    const numberRef = useRef('')
+    const emailRef = useRef('')
+    const addressRef = useRef('')
+    const priceRef = useRef('')
     const services = useServices()
+    const { user } = useAuth()
     const { id } = useParams()
-    const result = services.filter(service => service._id == id)
-    const nameHandler = e => {
-        setName(e.target.value)
-    }
-    const packageNameHandler = e => {
-        setServicePack(e.target.value)
-    }
-    const numberHandler = e => {
-        setNumber(e.target.value)
-    }
-    const emailHandler = e => {
-        setEmail(e.target.value)
-    }
-    const addressHandler = e => {
-        setAddress(e.target.value)
-    }
+    const servicePack = services.filter(service => service._id == id)
+
     const orderHandler = e => {
-        const result = { name: name, title: servicePack, number: number, email: email, address: address, }
+        const name = nameRef.current.value
+        const servicePack = servicePackRef.current.value
+        const number = numberRef.current.value
+        const email = emailRef.current.value
+        const address = addressRef.current.value
+        const price = priceRef.current.value
+        const result = { name: name, title: servicePack, number: number, email: email, address: address, price: price }
 
         fetch('https://obscure-caverns-66602.herokuapp.com/orders', {
             method: "POST",
@@ -46,33 +42,61 @@ const OrdersPlace = () => {
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto my-10 items-center">
             <div>
-                <h1>{result[0]?.title}</h1>
+                <Col>
+                    <Card className="border-0 shadow-md">
+                        <Card.Img className="" variant="top" src={servicePack[0]?.img} />
+                        <Card.Body className="text-center text-2xl">
+                            <div className="flex justify-between items-center">
+                                {/* <p className="text-yellow-600">
+                                    <Rating
+                                        initialRating={servicePack[0]?.rating}
+                                        readonly
+                                        emptySymbol="far fa-star"
+                                        fullSymbol="fas fa-star"
+
+                                    />
+                                </p> */}
+                                
+                            </div>
+                            <Card.Title>{servicePack[0]?.title}</Card.Title>
+                            <p><i className="far fa-clock text-red-600 mr-1"></i>{servicePack[0]?.tourDays} days</p>
+                                                    <p className="">${servicePack[0]?.price}</p>
+                            <Card.Text className="text-base text-medium text-gray-500">
+                                {servicePack[0]?.description}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
             </div>
             <div className="mb-8">
-                <h2 className="text-center my-8">Orders</h2>
+                <h2 className="text-center my-8">Booking</h2>
                 <div className="w-96 shadow-md bg-white p-4 mx-auto rounded">
                     <Form >
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className="font-medium">Name</Form.Label>
-                            <Form.Control onBlur={nameHandler} type="text" placeholder="Enter Name" required />
+                            <Form.Control ref={nameRef} type="text" defaultValue={user?.displayName} placeholder="Enter Name" required />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className="font-medium">Service Package Name</Form.Label>
-                            <Form.Control onBlur={packageNameHandler} type="text" value={result[0]?.title} placeholder="Enter Package Name" required />
+                            <Form.Control ref={servicePackRef} type="text" defaultValue={servicePack[0]?.title} placeholder="Enter Package Name" required />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicEmail">
+                            <Form.Label className="font-medium">Package Price</Form.Label>
+                            <Form.Control ref={servicePackRef} type="number" defaultValue={servicePack[0]?.price} placeholder="Enter Price" required />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className="font-medium">Phone Number</Form.Label>
-                            <Form.Control onBlur={numberHandler} type="number" placeholder="Phone Number" required />
+                            <Form.Control ref={numberRef} type="number" placeholder="Phone Number" required />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className="font-medium">Email address</Form.Label>
-                            <Form.Control onBlur={emailHandler} type="email" placeholder="Enter Email" required />
+                            <Form.Control ref={emailRef} type="email" defaultValue={user?.email} placeholder="Enter Email" required />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className="font-medium">Address</Form.Label>
-                            <Form.Control onBlur={addressHandler} type="text" placeholder="Enter Address" required />
+                            <Form.Control ref={addressRef} type="text" placeholder="Enter Address" required />
                         </Form.Group>
 
                         <Button onClick={orderHandler} className="w-80 mt-4" variant="primary" type="submit">

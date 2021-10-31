@@ -33,8 +33,8 @@ const ManageOrders = () => {
         }
     }
     return (
-        <div>
-            <h1>Hello manage orders</h1>
+        <div className="my-14">
+            <h1 className="text-center text-4xl mb-8">Hello manage orders</h1>
             {
                 orders?.map(order => <div>
                     <div className="flex p-6 rounded justify-center items-center shadow-md w-96 mx-auto gap-4">

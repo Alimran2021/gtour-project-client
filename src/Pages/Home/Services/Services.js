@@ -8,8 +8,8 @@ const Services = () => {
 
 
     return (
-        <div className="my-20">
-            <h1 className="text-center mb-4">Our Latest Services</h1>
+        <div id="services" className="my-20">
+            <h1 className="text-center mb-8 font-bold text-4xl">Our Latest Services Package</h1>
             <Row className="container g-4 mx-auto" xs={1} md={3}>
                 {
                     services?.map(service => <Service service={service}></Service>)

@@ -1,6 +1,6 @@
 import React from 'react';
 import './banner.css'
-import { Button } from "react-bootstrap"
+
 
 const Banner = () => {
     return (
@@ -9,10 +9,9 @@ const Banner = () => {
                 <div className="grid grid-cols-2 justify-center items-center h-full container text-white">
                     <div className="leading-8">
                         <h1 className="fw-bold mb-4 text-5xl">Find The Latest Tour GTOUR.</h1>
-                        <p className="mb-14">Text Some</p>
-                        <Button className="focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500">
-                            Book Now
-                        </Button>
+                        <p className="mb-14">Tour's are common and important in the life of every human being in the world.
+                            Book now to go on tour in different countries on GTour.</p>
+                        <button className="bg-red-600 text-white py-2 px-4 rounded tex-semibold">Booking Now</button>
                     </div>
 
                 </div>

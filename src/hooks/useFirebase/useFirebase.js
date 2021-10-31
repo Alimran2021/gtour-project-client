@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuth from "../../Pages/Shared/Login/firebase/firebase.init";
 
@@ -13,7 +13,12 @@ const useFirebase = () => {
         return signInWithPopup(auth, googleProvider)
 
     }
-
+    const logOut = () => {
+        signOut(auth)
+            .then(() => {
+                setUser({})
+            })
+    }
     useEffect(() => {
         onAuthStateChanged(auth, user => {
             if (user) {
@@ -23,7 +28,8 @@ const useFirebase = () => {
     }, [])
     return {
         user,
-        googleSignIn
+        googleSignIn,
+        logOut
     }
 
 };
