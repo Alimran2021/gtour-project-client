@@ -5,6 +5,7 @@ import { useParams } from 'react-router';
 import useServices from '../../hooks/UseServices/useServices';
 import useAuth from '../../hooks/useAuth/useAuth'
 
+// order place start here
 const OrdersPlace = () => {
     const nameRef = useRef('')
     const servicePackRef = useRef('')
@@ -17,7 +18,9 @@ const OrdersPlace = () => {
     const { id } = useParams()
     const servicePack = services.filter(service => service._id == id)
 
+    // order handler here
     const orderHandler = e => {
+
         const name = nameRef.current.value
         const servicePack = servicePackRef.current.value
         const number = numberRef.current.value
@@ -26,7 +29,8 @@ const OrdersPlace = () => {
         const price = priceRef.current.value
         const result = { name: name, title: servicePack, number: number, email: email, address: address, price: price }
 
-        fetch('https://obscure-caverns-66602.herokuapp.com/orders', {
+        console.log(result)
+        fetch('http://localhost:4000/orders', {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -40,7 +44,6 @@ const OrdersPlace = () => {
 
         e.preventDefault()
     }
-
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 container mx-auto my-10 items-center">
             <div>
@@ -49,20 +52,11 @@ const OrdersPlace = () => {
                         <Card.Img className="" variant="top" src={servicePack[0]?.img} />
                         <Card.Body className="text-center text-2xl">
                             <div className="flex justify-between items-center">
-                                {/* <p className="text-yellow-600">
-                                    <Rating
-                                        initialRating={servicePack[0]?.rating}
-                                        readonly
-                                        emptySymbol="far fa-star"
-                                        fullSymbol="fas fa-star"
 
-                                    />
-                                </p> */}
-                                
                             </div>
                             <Card.Title>{servicePack[0]?.title}</Card.Title>
                             <p><i className="far fa-clock text-red-600 mr-1"></i>{servicePack[0]?.tourDays} days</p>
-                                                    <p className="">${servicePack[0]?.price}</p>
+                            <p className="">${servicePack[0]?.price}</p>
                             <Card.Text className="text-base text-medium text-gray-500">
                                 {servicePack[0]?.description}
                             </Card.Text>

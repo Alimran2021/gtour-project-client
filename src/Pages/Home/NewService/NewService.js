@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { Form, Button } from "react-bootstrap"
+
+// new service add here
 const NewService = () => {
     const titleRef = useRef('')
     const cityRef = useRef('')
@@ -8,6 +10,8 @@ const NewService = () => {
     const ratingRef = useRef('')
     const imgRef = useRef('')
     const tourRef = useRef('')
+    // submit handler here
+
     const handleSubmit = (e) => {
         e.preventDefault()
         const title = titleRef.current.value
@@ -33,7 +37,7 @@ const NewService = () => {
     return (
         <div className="grid grid-cols-1  my-20 container mx-auto">
             <div>
-            <h1 className="text-center text-4xl mb-8">Add A New Service</h1>
+                <h1 className="text-center text-4xl mb-8">Add A New Service</h1>
                 <Form className="w-80 mx-auto" >
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Control ref={titleRef} type="text" placeholder="Enter Title" required />

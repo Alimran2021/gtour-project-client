@@ -1,28 +1,22 @@
-import React, { useState } from 'react';
-// import { useForm } from "react-hook-form";
+
+import { useLocation, useHistory } from 'react-router';
 import useAuth from '../../../../hooks/useAuth/useAuth';
 
-const Login = () => {
-    const [user, setUser] = useState({})
-    const { googleSignIn } = useAuth()
-    // const { register, handleSubmit } = useForm();
-    // const onSubmit = data => {
-    //     console.log(data);
-    // }
+// login form here
 
+const Login = () => {
+    const { googleSignIn } = useAuth()
+    const location = useLocation()
+    const history = useHistory()
+    const location_url = location?.state?.from || '/home'
     const googleHandler = () => {
         googleSignIn()
             .then(result => {
-                setUser(result.user)
+                history.push(location_url)
             })
     }
     return (
         <div className=" my-20 w-80 shadow-md bg-white p-8 mx-auto rounded">
-            {/* <form onSubmit={handleSubmit(onSubmit)}>
-                <input className="border mb-2" type="email" {...register("email")} /> <br />
-                <input className="border" type="password" {...register("password")} /> <br />
-                <input type="Login" /> <br />
-            </form> */}
             <div>
                 <button className="bg-red-700 text-white py-2 px-4 rounded" onClick={googleHandler}>
                     <span className="flex justify-center items-center">

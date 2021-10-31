@@ -3,7 +3,6 @@ import './App.css';
 import AuthProvider from './context/AuthProvider/AuthProvider';
 import Home from './Pages/Home/Home/Home';
 import NewService from './Pages/Home/NewService/NewService';
-// import Service from './Pages/Home/Service/Service';
 import Services from './Pages/Home/Services/Services';
 import ManageOrders from './Pages/ManageOrders/ManageOrders';
 import MyOrders from './Pages/MyOrders/MyOrders';
@@ -11,12 +10,13 @@ import OrdersPlace from './Pages/OrdersPlace/OrdersPlace';
 import Footer from './Pages/Shared/Footer/Footer/Footer';
 import Header from './Pages/Shared/Header/Header';
 import Login from './Pages/Shared/Login/Login/Login';
-// import PrivateRoute from './Pages/Shared/Login/PrivateRoute/PrivateRote';
-import NotFound from './Pages/Shared/Login/PrivateRoute/PrivateRote'
+import PrivateRoute from './Pages/Shared/Login/PrivateRoute/PrivateRote';
+import PageNotFound from './Pages/PageNotFound/PageNotFound';
 
 
 function App() {
   return (
+    // all route here
     <div className="">
       <AuthProvider>
         <Router>
@@ -31,10 +31,10 @@ function App() {
             <Route path="/services">
               <Services />
             </Route>
-            <Route path="/ordersPlace/:id">
+            <PrivateRoute path="/ordersPlace/:id">
               <OrdersPlace />
-            </Route>
-            <Route path="myOrders">
+            </PrivateRoute>
+            <Route path="/myOrders">
               <MyOrders />
             </Route>
             <Route path="/manage">
@@ -46,8 +46,8 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="*">
-              <NotFound />
+            <Route exact path="*">
+              <PageNotFound />
             </Route>
           </Switch>
           <Footer />

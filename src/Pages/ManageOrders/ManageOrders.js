@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-
+// manage all orders here
 const ManageOrders = () => {
     const [orders, setOrders] = useState([])
     useEffect(() => {
@@ -10,7 +10,7 @@ const ManageOrders = () => {
                 setOrders(data)
             })
     }, [orders])
-
+    // delete handler here
     const deleteHandler = id => {
         console.log(id)
         const proceed = window.confirm('are you sure delete for item')
@@ -34,13 +34,14 @@ const ManageOrders = () => {
     }
     return (
         <div className="my-14">
-            <h1 className="text-center text-4xl mb-8">Hello manage orders</h1>
+            <h1 className="text-center text-4xl mb-8">Manage All Orders</h1>
             {
                 orders?.map(order => <div>
                     <div className="flex p-6 rounded justify-center items-center shadow-md w-96 mx-auto gap-4">
                         <div>
                             <h2>{order.name}</h2>
                             <h2>{order.title}</h2>
+                            <p>{order.price}</p>
                             <p>{order.number}</p>
                             <p>{order.email}</p>
                         </div>
